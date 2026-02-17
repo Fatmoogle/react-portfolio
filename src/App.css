@@ -1,0 +1,7 @@
+.App {
+  position: relative;
+}
+
+.main-content {
+  margin-top: 70px; /* Account for fixed navigation */
+}
