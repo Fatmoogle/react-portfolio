@@ -8,6 +8,9 @@ function Contact() {
     subject: '',
     message: ''
   })
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null) // 'success' or 'error'
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
     setFormData({
@@ -16,11 +19,43 @@ function Contact() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // For now, we'll just create a mailto link
-    const mailtoLink = `mailto:your.alexvar93@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
-    window.location.href = mailtoLink
+    setIsLoading(true)
+    setSubmitStatus(null)
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('https://portfolio-contact-api-8sea.onrender.com/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success')
+        // Clear form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(data.message || 'Failed to send message')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage('Network error. Please try again later.')
+      console.error('Form submission error:', error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -103,6 +138,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="Your Name"
+                  disabled={isLoading}
                 />
               </div>
 
@@ -116,6 +152,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="your.email@example.com"
+                  disabled={isLoading}
                 />
               </div>
 
@@ -129,6 +166,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="Project Inquiry"
+                  disabled={isLoading}
                 />
               </div>
 
@@ -142,12 +180,29 @@ function Contact() {
                   required
                   rows="6"
                   placeholder="Tell me about your project..."
+                  disabled={isLoading}
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary submit-btn">
-                Send Message
+              <button 
+                type="submit" 
+                className="btn btn-primary submit-btn"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Sending...' : 'Send Message'}
               </button>
+
+              {submitStatus === 'success' && (
+                <div className="form-message success">
+                  ✓ Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="form-message error">
+                  ✗ {errorMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -21,25 +21,25 @@ function About() {
               <img src={mainImage} alt="Alex Varela" />
             </div>
             <div className="picture-thumbnails">
-              <div 
+              <div
                 className="thumbnail"
                 onMouseEnter={() => setMainImage('/Assets/Images/Profile_pic.jpg')}
               >
                 <img src="/Assets/Images/Profile_pic.jpg" alt="Profile 1" />
               </div>
-              <div 
+              <div
                 className="thumbnail"
                 onMouseEnter={() => setMainImage('/Assets/Images/profil_pic2.jpg')}
               >
                 <img src="/Assets/Images/profil_pic2.jpg" alt="Profile 2" />
               </div>
-              <div 
+              <div
                 className="thumbnail"
                 onMouseEnter={() => setMainImage('/Assets/Images/profile_pic3.jpg')}
               >
                 <img src="/Assets/Images/profile_pic3.jpg" alt="Profile 3" />
               </div>
-              <div 
+              <div
                 className="thumbnail"
                 onMouseEnter={() => setMainImage('/Assets/Images/profile_pic4.jpg')}
               >
@@ -54,15 +54,16 @@ function About() {
             <div className="welcome-section fade-in">
               <h2>Welcome</h2>
               <p>
-                I am a recent graduate of the University of North Carolina at Chapel Hill 
-                with newly honed skills in <strong>JavaScript, React, HTML and CSS, and more</strong>. 
-                I'm passionate about creating elegant, efficient solutions to complex problems 
+                Software developer with proficiency in <strong>Node.js, Nest.js, HTML and CSS, SQL, C#, and more</strong>.
+                I'm passionate about creating elegant, efficient solutions to complex problems
                 and building web applications that make a difference.
               </p>
               <p>
-                My journey into web development started with a fascination for how things work 
-                behind the scenes. I love the challenge of turning ideas into reality through code, 
-                and I'm constantly learning new technologies and best practices to improve my craft.
+                As someone who began playing video games at a young age, I was always fascinated by the technology behind them.
+                This curiosity eventually led me to explore programming and web development as a profession.
+              </p>
+              <p>
+                With a curious mind, I look forward to learning new technologies and taking on new challenges in the ever-evolving world of software development.
               </p>
             </div>
 
@@ -111,8 +112,11 @@ function About() {
                     <ul>
                       <li>Node.js</li>
                       <li>Express</li>
-                      <li>MongoDB</li>
+                      <li>SQL</li>
                       <li>RESTful APIs</li>
+                      <li>C#</li>
+                      <li>Nest.js</li>
+                      <li>TypeORM</li>
                     </ul>
                   </div>
                   <div className="skill-category">
@@ -122,6 +126,8 @@ function About() {
                       <li>VS Code</li>
                       <li>Chrome DevTools</li>
                       <li>Postman</li>
+                      <li>AI Tools</li>
+                      <li>CI/CD</li>
                     </ul>
                   </div>
                 </div>
